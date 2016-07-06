@@ -6,6 +6,8 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
 
 import com.rozzles.pageturner.PageTurner;
 
@@ -45,5 +47,13 @@ public class actions {
 			PageTurner.mp.seek(30000);
 		}
 	}
+	public static void setPlaybackSpeed(ChangeEvent e){
+		JSlider slider = (JSlider) e.getSource();
+		System.out.println(slider.getValue());
+		float speed =(float) slider.getValue()/100;
+		System.out.println(speed);
+		PageTurner.mp.setPlaybackSpeed(speed );	
+	}
+	
 
 }

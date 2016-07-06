@@ -17,6 +17,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JLayeredPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.event.ChangeListener;
+
+import com.rozzles.pageturner.PageTurner;
+
+import javax.swing.event.ChangeEvent;
 
 public class MainUi {
 
@@ -24,6 +29,7 @@ public class MainUi {
 	private JTable table;
 	private JLayeredPane ControlPanel;
 	private JMenuBar menuBar;
+	private JSlider slider_1;
 
 
 	/**
@@ -125,16 +131,25 @@ public class MainUi {
 		JLabel lblPlaybackSpeed = new JLabel("Playback Speed");
 		panel.add(lblPlaybackSpeed);
 		
-		JSlider slider_1 = new JSlider();
-		slider_1.setValue(0);
+		slider_1 = new JSlider();
+		slider_1.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				actions.setPlaybackSpeed(arg0);
+			}
+		});
+		slider_1.setValue(100);
 		slider_1.setPaintTicks(true);
 		slider_1.setMinorTickSpacing(50);
 		slider_1.setMajorTickSpacing(100);
-		slider_1.setMaximum(300);
-		slider_1.setMinimum(-300);
+		slider_1.setMaximum(200);
 		panel.add(slider_1);
 		
 		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			PageTurner.window.getRateSlider().setValue(100);
+			}
+		});
 		panel.add(btnReset);
 		
 		JSplitPane splitPane = new JSplitPane();
@@ -168,5 +183,8 @@ public class MainUi {
 	}
 	public JMenuBar getMenuBar() {
 		return menuBar;
+	}
+	public JSlider getRateSlider() {
+		return slider_1;
 	}
 }

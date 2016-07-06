@@ -24,7 +24,7 @@ import java.awt.image.BufferedImage;
 
 public class PageTurner {
 	public static MediaObj mp;
-	
+	public static MainUi window;
 
         public static void main (final String[] args){
         	
@@ -56,7 +56,7 @@ public class PageTurner {
     public PageTurner() {
     
     	mp = new MediaObj();
-    	MainUi window = new MainUi();
+    	window = new MainUi();
 		window.getFrmPageTurner().setVisible(true);
     	
      
